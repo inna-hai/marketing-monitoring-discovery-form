@@ -1,1152 +1,1153 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הצעת שיתוף פעולה - אניס</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Heebo', sans-serif;
-            background: linear-gradient(135deg, #fef3f2 0%, #eff6ff 50%, #f0fdfa 100%);
-            min-height: 100vh;
-            color: #1a202c;
-            line-height: 1.7;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* HERO */
-        .hero {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            color: white;
-            padding: 70px 50px;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .hero .badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 14px;
-            position: relative;
-            z-index: 1;
-            line-height: 1.2;
-        }
-
-        .hero .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .hero .client-tag {
-            margin-top: 24px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* CARDS */
-        .card {
-            background: white;
-            padding: 44px 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-            margin-bottom: 24px;
-        }
-
-        .card h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #1e293b;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .card h2 .emoji {
-            font-size: 1.6rem;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #334155;
-            margin: 28px 0 14px;
-        }
-
-        .card p {
-            color: #475569;
-            margin-bottom: 14px;
-            font-size: 1rem;
-        }
-
-        .card ul {
-            list-style: none;
-            margin: 14px 0;
-        }
-
-        .card ul li {
-            padding: 8px 0;
-            padding-right: 28px;
-            position: relative;
-            color: #475569;
-        }
-
-        .card ul li::before {
-            content: '✓';
-            position: absolute;
-            right: 0;
-            top: 8px;
-            color: #a855f7;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .principles {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .principle {
-            background: linear-gradient(135deg, #faf5ff, #fdf2f8);
-            padding: 24px;
-            border-radius: 14px;
-            border-right: 4px solid #a855f7;
-        }
-
-        .principle-num {
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .principle h4 {
-            font-size: 1rem;
-            color: #1e293b;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .principle p {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        /* PHASES */
-        .phase {
-            border: 2px solid #e2e8f0;
-            border-radius: 18px;
-            padding: 30px 34px;
-            margin-bottom: 20px;
-            background: #fafbfc;
-            transition: all 0.3s;
-        }
-
-        .phase-header {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 18px;
-            padding-bottom: 18px;
-            border-bottom: 2px dashed #e2e8f0;
-        }
-
-        .phase-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .phase-0 { border-color: #3b82f6; background: linear-gradient(135deg, #eff6ff, #dbeafe); }
-        .phase-0 .phase-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-
-        .phase-1 { border-color: #10b981; background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
-        .phase-1 .phase-icon { background: linear-gradient(135deg, #10b981, #047857); }
-
-        .phase-2 { border-color: #a855f7; background: linear-gradient(135deg, #faf5ff, #f3e8ff); }
-        .phase-2 .phase-icon { background: linear-gradient(135deg, #a855f7, #7e22ce); }
-
-        .phase-title h3 {
-            font-size: 1.4rem;
-            color: #1e293b;
-            margin: 0 0 4px;
-            font-weight: 800;
-        }
-
-        .phase-meta {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .phase-price {
-            display: inline-block;
-            background: white;
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-top: 12px;
-            font-size: 1.1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        .phase-price .amount {
-            color: #a855f7;
-        }
-
-        /* TABLES */
-        .table-wrap {
-            overflow-x: auto;
-            margin: 20px 0;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-
-        thead {
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-        }
-
-        th {
-            color: white;
-            font-weight: 600;
-            padding: 14px 18px;
-            text-align: right;
-            font-size: 0.95rem;
-        }
-
-        td {
-            padding: 14px 18px;
-            border-bottom: 1px solid #f1f5f9;
-            color: #475569;
-        }
-
-        tbody tr:hover {
-            background: #faf5ff;
-        }
-
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        td.highlight {
-            font-weight: 700;
-            color: #1e293b;
-        }
-
-        td.price {
-            font-weight: 700;
-            color: #a855f7;
-        }
-
-        .total-row {
-            background: linear-gradient(135deg, #faf5ff, #fdf2f8) !important;
-            font-weight: 700;
-        }
-
-        .total-row td {
-            color: #1e293b !important;
-            font-size: 1.1rem;
-            padding: 18px;
-        }
-
-        /* TIP BOX */
-        .tip {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            padding: 16px 20px;
-            border-radius: 12px;
-            margin: 16px 0;
-            color: #78350f;
-            font-size: 0.95rem;
-            border-right: 4px solid #f59e0b;
-        }
-
-        .tip strong {
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            color: #1e3a8a;
-            border-right: 4px solid #3b82f6;
-        }
-
-        .success-box {
-            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            color: #065f46;
-            border-right: 4px solid #10b981;
-        }
-
-        /* ROI HIGHLIGHT */
-        .roi-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .roi-card {
-            background: white;
-            padding: 22px;
-            border-radius: 14px;
-            text-align: center;
-            border: 2px solid #e2e8f0;
-        }
-
-        .roi-card .value {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 6px;
-        }
-
-        .roi-card .label {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .roi-total {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 24px;
-            border-radius: 16px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .roi-total .value {
-            font-size: 2.4rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-
-        .roi-total .label {
-            font-size: 1rem;
-            opacity: 0.95;
-        }
-
-        /* BONUS GRID */
-        .bonus-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-            margin-top: 20px;
-        }
-
-        .bonus-item {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            padding: 16px 20px;
-            border-radius: 12px;
-            color: #78350f;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .bonus-item .gift {
-            font-size: 1.4rem;
-        }
-
-        /* TIMELINE */
-        .timeline {
-            background: #0f172a;
-            color: #cbd5e0;
-            padding: 24px;
-            border-radius: 14px;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-            font-size: 0.9rem;
-        }
-
-        .timeline .line {
-            padding: 3px 0;
-        }
-
-        .timeline .weeks {
-            color: #7dd3fc;
-        }
-
-        .timeline .phase-text {
-            color: #fbbf24;
-        }
-
-        /* QUOTE */
-        .quote {
-            background: linear-gradient(135deg, #faf5ff, #fdf2f8);
-            padding: 24px 30px;
-            border-radius: 16px;
-            margin: 20px 0;
-            border-right: 4px solid #a855f7;
-            font-style: italic;
-            color: #6b21a8;
-            position: relative;
-        }
-
-        .quote::before {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            color: #e9d5ff;
-            font-family: Georgia, serif;
-        }
-
-        /* CTA */
-        .cta {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            color: white;
-            padding: 50px;
-            border-radius: 24px;
-            text-align: center;
-            margin: 30px 0;
-            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25);
-        }
-
-        .cta h2 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 16px;
-            justify-content: center;
-        }
-
-        .cta p {
-            color: rgba(255,255,255,0.95);
-            font-size: 1.1rem;
-            margin-bottom: 24px;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 28px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .step {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            padding: 24px 20px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .step-num {
-            width: 40px;
-            height: 40px;
-            background: white;
-            color: #a855f7;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            margin: 0 auto 12px;
-        }
-
-        .step h4 {
-            color: white;
-            margin-bottom: 6px;
-        }
-
-        .step p {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        /* FAQ */
-        .faq-item {
-            border-bottom: 1px solid #f1f5f9;
-            padding: 18px 0;
-        }
-
-        .faq-item:last-child { border-bottom: none; }
-
-        .faq-q {
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .faq-q::before {
-            content: '❓';
-            font-size: 1.1rem;
-        }
-
-        .faq-a {
-            color: #475569;
-            padding-right: 30px;
-        }
-
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        .footer a {
-            color: #a855f7;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
-            margin: 30px 0;
-        }
-
-        .scenarios {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .scenario {
-            background: #fafbfc;
-            border: 2px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 24px 28px;
-        }
-
-        .scenario-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-        }
-
-        .scenario-header h4 {
-            color: #1e293b;
-            font-size: 1.2rem;
-            margin: 0;
-        }
-
-        .scenario-total {
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-weight: 700;
-        }
-
-        @media (max-width: 760px) {
-            .hero { padding: 48px 28px; }
-            .hero h1 { font-size: 2rem; }
-            .card { padding: 30px 24px; }
-            .principles { grid-template-columns: 1fr; }
-            .roi-grid { grid-template-columns: 1fr; }
-            .bonus-grid { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: 1fr; }
-            .phase { padding: 22px 20px; }
-        }
-
-        @media print {
-            body { background: white; padding: 0; }
-            .card, .hero, .cta { box-shadow: none; break-inside: avoid; }
-        }
-    </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>הצעת שיתוף פעולה - אניס</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+ <style>
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+
+ body {
+ font-family: 'Heebo', sans-serif;
+ background: linear-gradient(135deg, #fef3f2 0%, #eff6ff 50%, #f0fdfa 100%);
+ min-height: 100vh;
+ color: #1a202c;
+ line-height: 1.7;
+ padding: 40px 20px;
+ }
+
+ .container {
+ max-width: 900px;
+ margin: 0 auto;
+ }
+
+ /* HERO */
+ .hero {
+ background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+ color: white;
+ padding: 70px 50px;
+ border-radius: 24px;
+ box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25);
+ position: relative;
+ overflow: hidden;
+ margin-bottom: 30px;
+ text-align: center;
+ }
+
+ .hero::before {
+ content: '';
+ position: absolute;
+ top: -50%;
+ left: -50%;
+ width: 200%;
+ height: 200%;
+ background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+ pointer-events: none;
+ }
+
+ .hero .badge {
+ display: inline-block;
+ background: rgba(255, 255, 255, 0.2);
+ backdrop-filter: blur(10px);
+ padding: 8px 20px;
+ border-radius: 100px;
+ font-size: 0.9rem;
+ font-weight: 500;
+ margin-bottom: 20px;
+ position: relative;
+ z-index: 1;
+ }
+
+ .hero h1 {
+ font-size: 3rem;
+ font-weight: 800;
+ margin-bottom: 14px;
+ position: relative;
+ z-index: 1;
+ line-height: 1.2;
+ }
+
+ .hero .subtitle {
+ font-size: 1.2rem;
+ opacity: 0.95;
+ font-weight: 400;
+ position: relative;
+ z-index: 1;
+ max-width: 600px;
+ margin: 0 auto;
+ }
+
+ .hero .client-tag {
+ margin-top: 24px;
+ font-size: 1.1rem;
+ font-weight: 600;
+ position: relative;
+ z-index: 1;
+ }
+
+ /* CARDS */
+ .card {
+ background: white;
+ padding: 44px 50px;
+ border-radius: 20px;
+ box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+ margin-bottom: 24px;
+ }
+
+ .card h2 {
+ font-size: 1.8rem;
+ font-weight: 800;
+ color: #1e293b;
+ margin-bottom: 20px;
+ display: flex;
+ align-items: center;
+ gap: 14px;
+ }
+
+ .card h2 .emoji {
+ font-size: 1.6rem;
+ }
+
+ .card h3 {
+ font-size: 1.3rem;
+ font-weight: 700;
+ color: #334155;
+ margin: 28px 0 14px;
+ }
+
+ .card p {
+ color: #475569;
+ margin-bottom: 14px;
+ font-size: 1rem;
+ }
+
+ .card ul {
+ list-style: none;
+ margin: 14px 0;
+ }
+
+ .card ul li {
+ padding: 8px 0;
+ padding-right: 28px;
+ position: relative;
+ color: #475569;
+ }
+
+ .card ul li::before {
+ content: '';
+ position: absolute;
+ right: 0;
+ top: 8px;
+ color: #a855f7;
+ font-weight: 700;
+ font-size: 1.1rem;
+ }
+
+ .principles {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 20px;
+ margin-top: 20px;
+ }
+
+ .principle {
+ background: linear-gradient(135deg, #faf5ff, #fdf2f8);
+ padding: 24px;
+ border-radius: 14px;
+ border-right: 4px solid #a855f7;
+ }
+
+ .principle-num {
+ background: linear-gradient(135deg, #6366f1, #a855f7);
+ color: white;
+ width: 36px;
+ height: 36px;
+ border-radius: 50%;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: 700;
+ margin-bottom: 10px;
+ }
+
+ .principle h4 {
+ font-size: 1rem;
+ color: #1e293b;
+ margin-bottom: 6px;
+ font-weight: 700;
+ }
+
+ .principle p {
+ color: #64748b;
+ font-size: 0.9rem;
+ margin: 0;
+ }
+
+ /* PHASES */
+ .phase {
+ border: 2px solid #e2e8f0;
+ border-radius: 18px;
+ padding: 30px 34px;
+ margin-bottom: 20px;
+ background: #fafbfc;
+ transition: all 0.3s;
+ }
+
+ .phase-header {
+ display: flex;
+ align-items: center;
+ gap: 18px;
+ margin-bottom: 18px;
+ padding-bottom: 18px;
+ border-bottom: 2px dashed #e2e8f0;
+ }
+
+ .phase-icon {
+ width: 56px;
+ height: 56px;
+ border-radius: 16px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 1.6rem;
+ font-weight: 800;
+ color: white;
+ flex-shrink: 0;
+ }
+
+ .phase-0 { border-color: #3b82f6; background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+ .phase-0 .phase-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+ .phase-1 { border-color: #10b981; background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+ .phase-1 .phase-icon { background: linear-gradient(135deg, #10b981, #047857); }
+
+ .phase-2 { border-color: #a855f7; background: linear-gradient(135deg, #faf5ff, #f3e8ff); }
+ .phase-2 .phase-icon { background: linear-gradient(135deg, #a855f7, #7e22ce); }
+
+ .phase-title h3 {
+ font-size: 1.4rem;
+ color: #1e293b;
+ margin: 0 0 4px;
+ font-weight: 800;
+ }
+
+ .phase-meta {
+ color: #64748b;
+ font-size: 0.9rem;
+ }
+
+ .phase-price {
+ display: inline-block;
+ background: white;
+ padding: 6px 16px;
+ border-radius: 100px;
+ font-weight: 700;
+ color: #1e293b;
+ margin-top: 12px;
+ font-size: 1.1rem;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+ }
+
+ .phase-price .amount {
+ color: #a855f7;
+ }
+
+ /* TABLES */
+ .table-wrap {
+ overflow-x: auto;
+ margin: 20px 0;
+ border-radius: 12px;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+ }
+
+ table {
+ width: 100%;
+ border-collapse: collapse;
+ background: white;
+ }
+
+ thead {
+ background: linear-gradient(135deg, #6366f1, #a855f7);
+ }
+
+ th {
+ color: white;
+ font-weight: 600;
+ padding: 14px 18px;
+ text-align: right;
+ font-size: 0.95rem;
+ }
+
+ td {
+ padding: 14px 18px;
+ border-bottom: 1px solid #f1f5f9;
+ color: #475569;
+ }
+
+ tbody tr:hover {
+ background: #faf5ff;
+ }
+
+ tbody tr:last-child td {
+ border-bottom: none;
+ }
+
+ td.highlight {
+ font-weight: 700;
+ color: #1e293b;
+ }
+
+ td.price {
+ font-weight: 700;
+ color: #a855f7;
+ }
+
+ .total-row {
+ background: linear-gradient(135deg, #faf5ff, #fdf2f8) !important;
+ font-weight: 700;
+ }
+
+ .total-row td {
+ color: #1e293b !important;
+ font-size: 1.1rem;
+ padding: 18px;
+ }
+
+ /* TIP BOX */
+ .tip {
+ background: linear-gradient(135deg, #fef3c7, #fde68a);
+ padding: 16px 20px;
+ border-radius: 12px;
+ margin: 16px 0;
+ color: #78350f;
+ font-size: 0.95rem;
+ border-right: 4px solid #f59e0b;
+ }
+
+ .tip strong {
+ display: block;
+ margin-bottom: 4px;
+ }
+
+ .info-box {
+ background: linear-gradient(135deg, #eff6ff, #dbeafe);
+ padding: 20px;
+ border-radius: 12px;
+ margin: 20px 0;
+ color: #1e3a8a;
+ border-right: 4px solid #3b82f6;
+ }
+
+ .success-box {
+ background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+ padding: 20px;
+ border-radius: 12px;
+ margin: 20px 0;
+ color: #065f46;
+ border-right: 4px solid #10b981;
+ }
+
+ /* ROI HIGHLIGHT */
+ .roi-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 16px;
+ margin-top: 20px;
+ }
+
+ .roi-card {
+ background: white;
+ padding: 22px;
+ border-radius: 14px;
+ text-align: center;
+ border: 2px solid #e2e8f0;
+ }
+
+ .roi-card .value {
+ font-size: 1.8rem;
+ font-weight: 800;
+ background: linear-gradient(135deg, #6366f1, #a855f7);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ background-clip: text;
+ margin-bottom: 6px;
+ }
+
+ .roi-card .label {
+ color: #64748b;
+ font-size: 0.9rem;
+ }
+
+ .roi-total {
+ background: linear-gradient(135deg, #10b981, #059669);
+ color: white;
+ padding: 24px;
+ border-radius: 16px;
+ text-align: center;
+ margin-top: 20px;
+ }
+
+ .roi-total .value {
+ font-size: 2.4rem;
+ font-weight: 800;
+ margin-bottom: 4px;
+ }
+
+ .roi-total .label {
+ font-size: 1rem;
+ opacity: 0.95;
+ }
+
+ /* BONUS GRID */
+ .bonus-grid {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 14px;
+ margin-top: 20px;
+ }
+
+ .bonus-item {
+ background: linear-gradient(135deg, #fef3c7, #fde68a);
+ padding: 16px 20px;
+ border-radius: 12px;
+ color: #78350f;
+ font-weight: 500;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+
+ .bonus-item .gift {
+ font-size: 1.4rem;
+ }
+
+ /* TIMELINE */
+ .timeline {
+ background: #0f172a;
+ color: #cbd5e0;
+ padding: 24px;
+ border-radius: 14px;
+ font-family: 'Courier New', monospace;
+ overflow-x: auto;
+ font-size: 0.9rem;
+ }
+
+ .timeline .line {
+ padding: 3px 0;
+ }
+
+ .timeline .weeks {
+ color: #7dd3fc;
+ }
+
+ .timeline .phase-text {
+ color: #fbbf24;
+ }
+
+ /* QUOTE */
+ .quote {
+ background: linear-gradient(135deg, #faf5ff, #fdf2f8);
+ padding: 24px 30px;
+ border-radius: 16px;
+ margin: 20px 0;
+ border-right: 4px solid #a855f7;
+ font-style: italic;
+ color: #6b21a8;
+ position: relative;
+ }
+
+ .quote::before {
+ content: '"';
+ font-size: 4rem;
+ position: absolute;
+ top: -10px;
+ right: 10px;
+ color: #e9d5ff;
+ font-family: Georgia, serif;
+ }
+
+ /* CTA */
+ .cta {
+ background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+ color: white;
+ padding: 50px;
+ border-radius: 24px;
+ text-align: center;
+ margin: 30px 0;
+ box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25);
+ }
+
+ .cta h2 {
+ color: white;
+ font-size: 2rem;
+ margin-bottom: 16px;
+ justify-content: center;
+ }
+
+ .cta p {
+ color: rgba(255,255,255,0.95);
+ font-size: 1.1rem;
+ margin-bottom: 24px;
+ }
+
+ .steps {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 16px;
+ margin-top: 28px;
+ max-width: 600px;
+ margin-left: auto;
+ margin-right: auto;
+ }
+
+ .step {
+ background: rgba(255,255,255,0.15);
+ backdrop-filter: blur(10px);
+ padding: 24px 20px;
+ border-radius: 14px;
+ border: 1px solid rgba(255,255,255,0.2);
+ }
+
+ .step-num {
+ width: 40px;
+ height: 40px;
+ background: white;
+ color: #a855f7;
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: 800;
+ margin: 0 auto 12px;
+ }
+
+ .step h4 {
+ color: white;
+ margin-bottom: 6px;
+ }
+
+ .step p {
+ color: rgba(255,255,255,0.9);
+ font-size: 0.9rem;
+ margin: 0;
+ }
+
+ /* FAQ */
+ .faq-item {
+ border-bottom: 1px solid #f1f5f9;
+ padding: 18px 0;
+ }
+
+ .faq-item:last-child { border-bottom: none; }
+
+ .faq-q {
+ font-weight: 700;
+ color: #1e293b;
+ margin-bottom: 8px;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+
+ .faq-q::before {
+ content: '';
+ font-size: 1.1rem;
+ }
+
+ .faq-a {
+ color: #475569;
+ padding-right: 30px;
+ }
+
+ /* FOOTER */
+ .footer {
+ text-align: center;
+ padding: 30px;
+ color: #94a3b8;
+ font-size: 0.9rem;
+ }
+
+ .footer a {
+ color: #a855f7;
+ text-decoration: none;
+ font-weight: 600;
+ }
+
+ .divider {
+ height: 2px;
+ background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+ margin: 30px 0;
+ }
+
+ .scenarios {
+ display: grid;
+ grid-template-columns: 1fr;
+ gap: 20px;
+ margin-top: 20px;
+ }
+
+ .scenario {
+ background: #fafbfc;
+ border: 2px solid #e2e8f0;
+ border-radius: 14px;
+ padding: 24px 28px;
+ }
+
+ .scenario-header {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin-bottom: 14px;
+ }
+
+ .scenario-header h4 {
+ color: #1e293b;
+ font-size: 1.2rem;
+ margin: 0;
+ }
+
+ .scenario-total {
+ background: linear-gradient(135deg, #6366f1, #a855f7);
+ color: white;
+ padding: 6px 16px;
+ border-radius: 100px;
+ font-weight: 700;
+ }
+
+ @media (max-width: 760px) {
+ .hero { padding: 48px 28px; }
+ .hero h1 { font-size: 2rem; }
+ .card { padding: 30px 24px; }
+ .principles { grid-template-columns: 1fr; }
+ .roi-grid { grid-template-columns: 1fr; }
+ .bonus-grid { grid-template-columns: 1fr; }
+ .steps { grid-template-columns: 1fr; }
+ .phase { padding: 22px 20px; }
+ }
+
+ @media print {
+ body { background: white; padding: 0; }
+ .card, .hero, .cta { box-shadow: none; break-inside: avoid; }
+ }
+ </style>
 </head>
 <body>
-    <div class="container">
+ <div class="container">
 
-        <!-- HERO -->
-        <div class="hero">
-            <div class="badge">הצעה מותאמת אישית</div>
-            <h1>מערכת ניטור שיווק AI</h1>
-            <div class="subtitle">פלטפורמת הדאטה והתובנות שתהפוך את השירות שלכם למקצועי ומדויק פי כמה</div>
-            <div class="client-tag">👋 עבור: אניס | ליטל</div>
-        </div>
+ <!-- HERO -->
+ <div class="hero">
+ <div class="badge">הצעה מותאמת אישית</div>
+ <h1>מערכת ניטור שיווק AI</h1>
+ <div class="subtitle">פלטפורמת הדאטה והתובנות שתהפוך את השירות שלכם למקצועי ומדויק פי כמה</div>
+ <div class="client-tag"> עבור: אניס | ליטל</div>
+ </div>
 
-        <!-- PRINCIPLES -->
-        <div class="card">
-            <h2><span class="emoji">🎯</span> העקרונות שעליהם בנינו את ההצעה</h2>
-            <div class="principles">
-                <div class="principle">
-                    <div class="principle-num">1</div>
-                    <h4>מוצר עובד כבר בשלב 0</h4>
-                    <p>תוך שבועיים מקבלים מערכת חיה עם הנתונים שלכם - לא מצגות ותכנונים על הנייר</p>
-                </div>
-                <div class="principle">
-                    <div class="principle-num">2</div>
-                    <h4>תשלום לפי אבני דרך</h4>
-                    <p>משלמים רק אחרי שרואים התקדמות - אין תשלום מראש על הכל</p>
-                </div>
-                <div class="principle">
-                    <div class="principle-num">3</div>
-                    <h4>Scale מותאם להצלחה</h4>
-                    <p>ככל שהמערכת תביא ערך, כך המעורבות גדלה - ולא להפך</p>
-                </div>
-                <div class="principle">
-                    <div class="principle-num">4</div>
-                    <h4>שותפות אמיתית</h4>
-                    <p>אנחנו מרוויחים יותר ככל שאתם מצליחים - זו שותפות להצלחה</p>
-                </div>
-            </div>
-        </div>
+ <!-- PRINCIPLES -->
+ <div class="card">
+ <h2><span class="emoji"></span> העקרונות שעליהם בנינו את ההצעה</h2>
+ <div class="principles">
+ <div class="principle">
+ <div class="principle-num">1</div>
+ <h4>מוצר עובד כבר בשלב 0</h4>
+ <p>תוך שבועיים מקבלים מערכת חיה עם הנתונים שלכם - לא מצגות ותכנונים על הנייר</p>
+ </div>
+ <div class="principle">
+ <div class="principle-num">2</div>
+ <h4>תשלום לפי אבני דרך</h4>
+ <p>משלמים רק אחרי שרואים התקדמות - אין תשלום מראש על הכל</p>
+ </div>
+ <div class="principle">
+ <div class="principle-num">3</div>
+ <h4>Scale מותאם להצלחה</h4>
+ <p>ככל שהמערכת תביא ערך, כך המעורבות גדלה - ולא להפך</p>
+ </div>
+ <div class="principle">
+ <div class="principle-num">4</div>
+ <h4>שותפות אמיתית</h4>
+ <p>אנחנו מרוויחים יותר ככל שאתם מצליחים - זו שותפות להצלחה</p>
+ </div>
+ </div>
+ </div>
 
-        <!-- PHASES -->
-        <div class="card">
-            <h2><span class="emoji">📐</span> מבנה הפרויקט - 3 שלבים</h2>
-            <p style="font-size: 1.05rem; margin-bottom: 24px;">פירקנו את הפרויקט לשלבים שמאפשרים לכם להיכנס בנוחות, להחליט בכל נקודה אם ממשיכים, ולא להסתכן בהשקעה גדולה מראש.</p>
+ <!-- PHASES -->
+ <div class="card">
+ <h2><span class="emoji"></span> מבנה הפרויקט - 3 שלבים</h2>
+ <p style="font-size: 1.05rem; margin-bottom: 24px;">פירקנו את הפרויקט לשלבים שמאפשרים לכם להיכנס בנוחות, להחליט בכל נקודה אם ממשיכים, ולא להסתכן בהשקעה גדולה מראש.</p>
 
-            <!-- PHASE 0 -->
-            <div class="phase phase-0">
-                <div class="phase-header">
-                    <div class="phase-icon">0</div>
-                    <div class="phase-title">
-                        <h3>Quick Win - מוצר עובד כבר תוך שבועיים</h3>
-                        <div class="phase-meta">2 שבועות • דשבורד ראשוני עם הנתונים האמיתיים שלכם</div>
-                    </div>
-                </div>
-                <h3 style="margin-top: 20px; color: #1e3a8a;">🛠️ חלק א' - פיתוח POC עובד</h3>
-                <ul>
-                    <li>🔌 חיבור מלא ל-Google Ads או Meta Ads (לבחירתכם) של <strong>לקוח אחד שלכם</strong></li>
-                    <li>📊 דשבורד בסיסי עם 5-6 KPIs עיקריים: הוצאה, ROAS, CTR, המרות, לידים, CPL</li>
-                    <li>🔄 נתונים חיים שמתעדכנים אוטומטית כל כמה שעות</li>
-                    <li>📱 ממשק Responsive (גם במובייל)</li>
-                </ul>
-                <div class="phase-price">השקעה: <span class="amount">3,500 ₪</span> + מע"מ</div>
+ <!-- PHASE 0 -->
+ <div class="phase phase-0">
+ <div class="phase-header">
+ <div class="phase-icon">0</div>
+ <div class="phase-title">
+ <h3>Quick Win - מוצר עובד כבר תוך שבועיים</h3>
+ <div class="phase-meta">2 שבועות • דשבורד ראשוני עם הנתונים האמיתיים שלכם</div>
+ </div>
+ </div>
+ <h3 style="margin-top: 20px; color: #1e3a8a;"> חלק א' - פיתוח POC עובד</h3>
+ <ul>
+ <li> חיבור מלא ל-Google Ads או Meta Ads (לבחירתכם) של <strong>לקוח אחד שלכם</strong></li>
+ <li> דשבורד בסיסי עם 5-6 KPIs עיקריים: הוצאה, ROAS, CTR, המרות, לידים, CPL</li>
+ <li> נתונים חיים שמתעדכנים אוטומטית כל כמה שעות</li>
+ <li> ממשק Responsive (גם במובייל)</li>
+ </ul>
+ <div class="phase-price">השקעה: <span class="amount">3,500 ₪</span> + מע"מ</div>
 
-                <h3 style="margin-top: 28px; color: #1e3a8a;">📝 חלק ב' - תכנון וליווי מקצועי</h3>
-                <ul>
-                    <li>📋 תוכנית פיתוח מפורטת לשלב 1 (ארכיטקטורה, יכולות, לוח זמנים)</li>
-                    <li>👥 2 פגישות עומק לתכנון ההמשך</li>
-                    <li><strong>✅ החלטה משותפת:</strong> ממשיכים לשלב 1 או סוגרים?</li>
-                </ul>
-                <div class="phase-price">השקעה: <span class="amount">4,000 ₪</span> + מע"מ</div>
+ <h3 style="margin-top: 28px; color: #1e3a8a;"> חלק ב' - תכנון וליווי מקצועי</h3>
+ <ul>
+ <li> תוכנית פיתוח מפורטת לשלב 1 (ארכיטקטורה, יכולות, לוח זמנים)</li>
+ <li> 2 פגישות עומק לתכנון ההמשך</li>
+ <li><strong> החלטה משותפת:</strong> ממשיכים לשלב 1 או סוגרים?</li>
+ </ul>
+ <div class="phase-price">השקעה: <span class="amount">4,000 ₪</span> + מע"מ</div>
 
-                <div class="success-box" style="margin-top: 20px;">
-                    <strong>💰 סה"כ שלב 0: 7,500 ₪ + מע"מ</strong>
-                </div>
-            </div>
+ <div style="margin-top: 24px; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 18px 28px; border-radius: 14px; text-align: center; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);">
+ <div style="font-size: 0.95rem; opacity: 0.95; margin-bottom: 4px;">סה"כ שלב 0</div>
+ <div style="font-size: 1.8rem; font-weight: 800;">7,500 ₪ + מע"מ</div>
+ </div>
+ </div>
 
-            <!-- PHASE 1 -->
-            <div class="phase phase-1">
-                <div class="phase-header">
-                    <div class="phase-icon">1</div>
-                    <div class="phase-title">
-                        <h3>הדשבורד החכם</h3>
-                        <div class="phase-meta">6-8 שבועות • להחליף את הגוגל שיטס ולתת ערך מיידי</div>
-                    </div>
-                </div>
-                <div class="info-box" style="margin-bottom: 18px;">
-                    <strong>🏢 איך המערכת בנויה?</strong><br>
-                    Multi-tenant - כל לקוח של אניס (מסעדה, מועדון כושר, פוליטיקאי וכו') מקבל סביבה נפרדת משלו עם הנתונים שלו בלבד. צוות אניס רואה את כולם מעל, הלקוח רואה רק את עצמו.
-                </div>
+ <!-- PHASE 1 -->
+ <div class="phase phase-1">
+ <div class="phase-header">
+ <div class="phase-icon">1</div>
+ <div class="phase-title">
+ <h3>הדשבורד החכם</h3>
+ <div class="phase-meta">6-8 שבועות • להחליף את הגוגל שיטס ולתת ערך מיידי</div>
+ </div>
+ </div>
+ <div class="info-box" style="margin-bottom: 18px;">
+ <strong> איך המערכת בנויה?</strong><br>
+ Multi-tenant - כל לקוח של אניס (מסעדה, מועדון כושר, פוליטיקאי וכו') מקבל סביבה נפרדת משלו עם הנתונים שלו בלבד. צוות אניס רואה את כולם מעל, הלקוח רואה רק את עצמו.
+ </div>
 
-                <p><strong>מה תקבלו:</strong></p>
-                <ul>
-                    <li>מערכת Multi-tenant - סביבה נפרדת לכל לקוח של אניס</li>
-                    <li>חיבור ל-Google Ads, Meta Ads, Google Analytics 4 (לכל לקוח)</li>
-                    <li>חיבור למרכזיות טלפוניות והקלטות שיחה (לכל לקוח)</li>
-                    <li>חיבור ל-WhatsApp Business (לכל לקוח)</li>
-                    <li>דשבורד ביצועים בזמן אמת - לכל לקוח של אניס בנפרד</li>
-                    <li><strong>ניתוח שיחות טלפון אוטומטי</strong> - תמלול + תובנות AI לכל לקוח</li>
-                    <li><strong>מחקר מתחרים מבוסס AI</strong> - ניתוח המתחרים של כל לקוח</li>
-                    <li>דוחות אוטומטיים (PDF + שיתוף) - לכל לקוח בנפרד</li>
-                    <li><strong>Client Portal</strong> - כל לקוח של אניס נכנס ורואה רק את הנתונים שלו</li>
-                    <li>התראות חכמות (Email + WhatsApp)</li>
-                    <li>ניהול משתמשים והרשאות (Admin אניס / צוות / לקוח)</li>
-                    <li>Onboarding של 3 לקוחות ראשונים שלכם</li>
-                </ul>
-                <div class="phase-price">השקעה: <span class="amount">35,000 ₪</span> + מע"מ</div>
-                <p style="margin-top: 14px; color: #64748b; font-size: 0.95rem;">+ 10% מהתשלום של כל לקוח של אניס שמשתמש במערכת (פירוט בסעיף השותפות למטה)</p>
+ <p><strong>מה תקבלו:</strong></p>
+ <ul>
+ <li>מערכת Multi-tenant - סביבה נפרדת לכל לקוח של אניס</li>
+ <li>חיבור ל-Google Ads, Meta Ads, Google Analytics 4 (לכל לקוח)</li>
+ <li>חיבור למרכזיות טלפוניות והקלטות שיחה (לכל לקוח)</li>
+ <li>חיבור ל-WhatsApp Business (לכל לקוח)</li>
+ <li>דשבורד ביצועים בזמן אמת - לכל לקוח של אניס בנפרד</li>
+ <li><strong>ניתוח שיחות טלפון אוטומטי</strong> - תמלול + תובנות AI לכל לקוח</li>
+ <li><strong>מחקר מתחרים מבוסס AI</strong> - ניתוח המתחרים של כל לקוח</li>
+ <li>דוחות אוטומטיים (PDF + שיתוף) - לכל לקוח בנפרד</li>
+ <li><strong>Client Portal</strong> - כל לקוח של אניס נכנס ורואה רק את הנתונים שלו</li>
+ <li>התראות חכמות (Email + WhatsApp)</li>
+ <li>ניהול משתמשים והרשאות (Admin אניס / צוות / לקוח)</li>
+ <li>Onboarding של 3 לקוחות ראשונים שלכם</li>
+ </ul>
+ <div class="phase-price">השקעה: <span class="amount">35,000 ₪</span> + מע"מ</div>
+ <p style="margin-top: 14px; color: #64748b; font-size: 0.95rem;">+ 10% מהתשלום של כל לקוח של אניס שמשתמש במערכת (פירוט בסעיף השותפות למטה)</p>
 
-                <h3 style="margin-top: 28px;">מסלול תשלום נוח</h3>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>אבן דרך</th>
-                                <th>שבוע</th>
-                                <th>תשלום</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="highlight">🟡 אישור Kickoff + התחלת פיתוח</td>
-                                <td>שבוע 1</td>
-                                <td class="price">12,000 ₪</td>
-                            </tr>
-                            <tr>
-                                <td class="highlight">🟡 Demo ראשוני (דשבורד + אינטגרציה ראשונה)</td>
-                                <td>שבוע 3</td>
-                                <td class="price">10,000 ₪</td>
-                            </tr>
-                            <tr>
-                                <td class="highlight">🟢 השקה ללקוח הראשון שלכם</td>
-                                <td>שבוע 6</td>
-                                <td class="price">8,000 ₪</td>
-                            </tr>
-                            <tr>
-                                <td class="highlight">🟢 סיום + קבלת המערכת</td>
-                                <td>שבוע 8</td>
-                                <td class="price">5,000 ₪</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+ <h3 style="margin-top: 28px;">מסלול תשלום נוח</h3>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th>אבן דרך</th>
+ <th>שבוע</th>
+ <th>תשלום</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td class="highlight"> אישור Kickoff + התחלת פיתוח</td>
+ <td>שבוע 1</td>
+ <td class="price">12,000 ₪</td>
+ </tr>
+ <tr>
+ <td class="highlight"> Demo ראשוני (דשבורד + אינטגרציה ראשונה)</td>
+ <td>שבוע 3</td>
+ <td class="price">10,000 ₪</td>
+ </tr>
+ <tr>
+ <td class="highlight"> השקה ללקוח הראשון שלכם</td>
+ <td>שבוע 6</td>
+ <td class="price">8,000 ₪</td>
+ </tr>
+ <tr>
+ <td class="highlight"> סיום + קבלת המערכת</td>
+ <td>שבוע 8</td>
+ <td class="price">5,000 ₪</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
 
-            </div>
+ </div>
 
-            <!-- PHASE 2 -->
-            <div class="phase phase-2">
-                <div class="phase-header">
-                    <div class="phase-icon">2</div>
-                    <div class="phase-title">
-                        <h3>המוח - יכולות AI מתקדמות</h3>
-                        <div class="phase-meta">6-8 שבועות • אופציונלי, רק אחרי הצלחת שלב 1</div>
-                    </div>
-                </div>
-                <div class="info-box" style="margin-bottom: 18px; background: linear-gradient(135deg, #faf5ff, #fdf2f8); border-right-color: #a855f7; color: #6b21a8;">
-                    <strong>🎯 חשוב להבין:</strong><br>
-                    ה-CRM וניתוח המיתוג בשלב הזה הם <strong>עבור הלקוחות של אניס</strong> (המסעדה, המועדון, הפוליטיקאי) - לא עבור אניס עצמה. כל לקוח מקבל CRM משלו לניהול לקוחות הקצה שלו, וניתוח מיתוג של הנכסים הדיגיטליים שלו.
-                </div>
+ <!-- PHASE 2 -->
+ <div class="phase phase-2">
+ <div class="phase-header">
+ <div class="phase-icon">2</div>
+ <div class="phase-title">
+ <h3>המוח - יכולות AI מתקדמות</h3>
+ <div class="phase-meta">6-8 שבועות • אופציונלי, רק אחרי הצלחת שלב 1</div>
+ </div>
+ </div>
+ <div class="info-box" style="margin-bottom: 18px; background: linear-gradient(135deg, #faf5ff, #fdf2f8); border-right-color: #a855f7; color: #6b21a8;">
+ <strong> חשוב להבין:</strong><br>
+ ה-CRM וניתוח המיתוג בשלב הזה הם <strong>עבור הלקוחות של אניס</strong> (המסעדה, המועדון, הפוליטיקאי) - לא עבור אניס עצמה. כל לקוח מקבל CRM משלו לניהול לקוחות הקצה שלו, וניתוח מיתוג של הנכסים הדיגיטליים שלו.
+ </div>
 
-                <p><strong>מה תקבלו:</strong></p>
-                <ul>
-                    <li><strong>מנוע המלצות AI עם ערך כספי</strong> - "כבה X - חוסך 2,300₪" לכל לקוח של אניס</li>
-                    <li><strong>CRM מלא לכל לקוח של אניס</strong>:
-                        <ul style="margin-right: 20px; margin-top: 6px;">
-                            <li>ניהול לידים של <u>לקוחות הקצה</u> (פניות מהאתר, מהטלפון, מוואטסאפ)</li>
-                            <li>תיעוד שיחות מכירה ופניות</li>
-                            <li>Pipeline - איפה כל ליד במשפך המכירה</li>
-                            <li>יצירת הצעות מחיר ללקוחות הקצה</li>
-                            <li>שיוך כל ליד למקור השיווקי שלו</li>
-                        </ul>
-                    </li>
-                    <li><strong>ניתוח מיתוג של כל לקוח של אניס</strong>:
-                        <ul style="margin-right: 20px; margin-top: 6px;">
-                            <li>סריקת הנכסים הדיגיטליים של הלקוח (אתר, עמודי נחיתה, מודעות, רשתות חברתיות)</li>
-                            <li>זיהוי חוסר עקביות במיתוג - צבעים, לוגו, tone of voice</li>
-                            <li>ציון מיתוג + דוח המלצות לשיפור</li>
-                        </ul>
-                    </li>
-                    <li><strong>סוכני AI חכמים</strong> - סוכן קמפיינים / סוכן CRO / סוכן חיזוי הצלחה - עובדים 24/7 ברקע</li>
-                    <li>Onboarding של עוד 5 לקוחות של אניס למערכת</li>
-                </ul>
-                <div class="phase-price">השקעה: <span class="amount">35,000 ₪</span> + מע"מ</div>
-            </div>
-        </div>
+ <p><strong>מה תקבלו:</strong></p>
+ <ul>
+ <li><strong>מנוע המלצות AI עם ערך כספי</strong> - "כבה X - חוסך 2,300₪" לכל לקוח של אניס</li>
+ <li><strong>CRM מלא לכל לקוח של אניס</strong>:
+ <ul style="margin-right: 20px; margin-top: 6px;">
+ <li>ניהול לידים של <u>לקוחות הקצה</u> (פניות מהאתר, מהטלפון, מוואטסאפ)</li>
+ <li>תיעוד שיחות מכירה ופניות</li>
+ <li>Pipeline - איפה כל ליד במשפך המכירה</li>
+ <li>יצירת הצעות מחיר ללקוחות הקצה</li>
+ <li>שיוך כל ליד למקור השיווקי שלו</li>
+ </ul>
+ </li>
+ <li><strong>ניתוח מיתוג של כל לקוח של אניס</strong>:
+ <ul style="margin-right: 20px; margin-top: 6px;">
+ <li>סריקת הנכסים הדיגיטליים של הלקוח (אתר, עמודי נחיתה, מודעות, רשתות חברתיות)</li>
+ <li>זיהוי חוסר עקביות במיתוג - צבעים, לוגו, tone of voice</li>
+ <li>ציון מיתוג + דוח המלצות לשיפור</li>
+ </ul>
+ </li>
+ <li><strong>סוכני AI חכמים</strong> - סוכן קמפיינים / סוכן CRO / סוכן חיזוי הצלחה - עובדים 24/7 ברקע</li>
+ <li>Onboarding של עוד 5 לקוחות של אניס למערכת</li>
+ </ul>
+ <div class="phase-price">השקעה: <span class="amount">35,000 ₪</span> + מע"מ</div>
+ </div>
+ </div>
 
-        <!-- MAINTENANCE -->
-        <div class="card">
-            <h2><span class="emoji">💎</span> תחזוקה שוטפת</h2>
-            <p>לאחר השקת שלב 1, נמשיך ללוות אתכם:</p>
-            <ul>
-                <li>תחזוקה, עדכונים ותיקוני באגים</li>
-                <li>תמיכה טכנית</li>
-                <li>עדכוני API של Google, Meta ואחרים</li>
-                <li>הוספת לקוחות חדשים למערכת</li>
-                <li>דוח חודשי על ביצועי המערכת</li>
-            </ul>
-            <div class="phase-price" style="background: linear-gradient(135deg, #faf5ff, #fdf2f8); margin-top: 16px;">
-                השקעה: <span class="amount">1,000 ₪</span> / חודש + מע"מ
-            </div>
-            <div class="success-box">
-                🎁 <strong>חודש ראשון חינם!</strong> כדי שתוכלו להרגיש בנוח לפני שההוצאה החודשית מתחילה
-            </div>
-        </div>
+ <!-- MAINTENANCE -->
+ <div class="card">
+ <h2><span class="emoji"></span> תחזוקה שוטפת</h2>
+ <p>לאחר השקת שלב 1, נמשיך ללוות אתכם:</p>
+ <ul>
+ <li>תחזוקה, עדכונים ותיקוני באגים</li>
+ <li>תמיכה טכנית</li>
+ <li>עדכוני API של Google, Meta ואחרים</li>
+ <li>הוספת לקוחות חדשים למערכת</li>
+ <li>דוח חודשי על ביצועי המערכת</li>
+ </ul>
+ <div class="phase-price" style="background: linear-gradient(135deg, #faf5ff, #fdf2f8); margin-top: 16px;">
+ השקעה: <span class="amount">1,000 ₪</span> / חודש + מע"מ
+ </div>
+ <div class="success-box">
+ <strong>חודש ראשון חינם!</strong> כדי שתוכלו להרגיש בנוח לפני שההוצאה החודשית מתחילה
+ </div>
+ </div>
 
-        <!-- PARTNERSHIP -->
-        <div class="card">
-            <h2><span class="emoji">🤝</span> רכיב השותפות - ההזדמנות שלכם להרוויח</h2>
-            <p>כשאתם מצרפים לקוח חדש <strong>בזכות המערכת</strong>, אנחנו שותפים להצלחה:</p>
+ <!-- PARTNERSHIP -->
+ <div class="card">
+ <h2><span class="emoji"></span> רכיב השותפות - ההזדמנות שלכם להרוויח</h2>
+ <p>כשאתם מצרפים לקוח חדש <strong>בזכות המערכת</strong>, אנחנו שותפים להצלחה:</p>
 
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>מצב</th>
-                            <th>אנחנו</th>
-                            <th>אתם</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="highlight">כל לקוח של אניס שמשתמש במערכת</td>
-                            <td class="price">10% מהתשלום החודשי</td>
-                            <td class="price" style="color: #10b981;">90%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th>מצב</th>
+ <th>אנחנו</th>
+ <th>אתם</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td class="highlight">כל לקוח של אניס שמשתמש במערכת</td>
+ <td class="price">10% מהתשלום החודשי</td>
+ <td class="price" style="color: #10b981;">90%</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
 
-            <div class="info-box">
-                <strong>דוגמה:</strong> לקוח שמשלם 8,000 ₪/חודש → 800 ₪ מגיע לנו, 7,200 ₪ אליכם (10%)
-            </div>
+ <div class="info-box">
+ <strong>דוגמה:</strong> לקוח שמשלם 8,000 ₪/חודש → 800 ₪ מגיע לנו, 7,200 ₪ אליכם (10%)
+ </div>
 
-            <div class="info-box" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-right-color: #10b981; color: #065f46;">
-                <strong>חשוב:</strong> האחוזים מחושבים <strong>מהמכירות (ההכנסה ברוטו)</strong> ולא מהרווחים שלכם. חישוב פשוט ושקוף - מה שהלקוח משלם × האחוז.
-            </div>
+ <div class="info-box" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-right-color: #10b981; color: #065f46;">
+ <strong>חשוב:</strong> האחוזים מחושבים <strong>מהמכירות (ההכנסה ברוטו)</strong> ולא מהרווחים שלכם. חישוב פשוט ושקוף - מה שהלקוח משלם × האחוז.
+ </div>
 
-            <h3>Cap על השותפות - הגנה עליכם</h3>
-            <ul>
-                <li><strong>סך התשלומים מהשותפות לא יעלה על 180,000 ₪ בשנה</strong></li>
-                <li>מעבר לכך - ההכנסה החדשה נעצרת (אתם ממשיכים להנות ב-100%)</li>
-                <li>אחרי 3 שנים - המודל הזה מתבטל לחלוטין</li>
-            </ul>
+ <h3>Cap על השותפות - הגנה עליכם</h3>
+ <ul>
+ <li><strong>סך התשלומים מהשותפות לא יעלה על 180,000 ₪ בשנה</strong></li>
+ <li>מעבר לכך - ההכנסה החדשה נעצרת (אתם ממשיכים להנות ב-100%)</li>
+ <li>אחרי 3 שנים - המודל הזה מתבטל לחלוטין</li>
+ </ul>
 
-            <div class="info-box" style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-right-color: #f59e0b; color: #78350f; margin-top: 16px;">
-                <strong>⚠️ חשוב להבהיר:</strong> ה-Cap הזה מתייחס <u>רק לשותפות (אחוזים מהכנסה)</u> ואינו כולל את דמי הפיתוח של המערכת (שלב 0, שלב 1, שלב 2) או את התחזוקה החודשית - אלו תשלומים נפרדים וקבועים.
-            </div>
+ <div class="info-box" style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-right-color: #f59e0b; color: #78350f; margin-top: 16px;">
+ <strong> חשוב להבהיר:</strong> ה-Cap הזה מתייחס <u>רק לשותפות (אחוזים מהכנסה)</u> ואינו כולל את דמי הפיתוח של המערכת (שלב 0, שלב 1, שלב 2) או את התחזוקה החודשית - אלו תשלומים נפרדים וקבועים.
+ </div>
 
-        </div>
+ </div>
 
-        <!-- RESELLER -->
-        <div class="card">
-            <h2><span class="emoji">🚀</span> הזדמנות עתידית: מכירת המערכת לסוכנויות אחרות</h2>
-            <p>אם בעתיד תרצו למכור את המערכת לסוכנויות שיווק אחרות (מודל Reseller), נוכל להפוך את זה לערוץ הכנסה משמעותי לשני הצדדים:</p>
+ <!-- RESELLER -->
+ <div class="card">
+ <h2><span class="emoji"></span> הזדמנות עתידית: מכירת המערכת לסוכנויות אחרות</h2>
+ <p>אם בעתיד תרצו למכור את המערכת לסוכנויות שיווק אחרות (מודל Reseller), נוכל להפוך את זה לערוץ הכנסה משמעותי לשני הצדדים:</p>
 
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>מה</th>
-                            <th>חלקכם</th>
-                            <th>חלקנו</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="highlight">מכירת המערכת לסוכנות חדשה (Setup)</td>
-                            <td class="price" style="color: #10b981;">70%</td>
-                            <td class="price">30%</td>
-                        </tr>
-                        <tr>
-                            <td class="highlight">תחזוקה חודשית שוטפת מאותה סוכנות</td>
-                            <td class="price" style="color: #10b981;">20%</td>
-                            <td class="price">80%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th>מה</th>
+ <th>חלקכם</th>
+ <th>חלקנו</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td class="highlight">מכירת המערכת לסוכנות חדשה (Setup)</td>
+ <td class="price" style="color: #10b981;">70%</td>
+ <td class="price">30%</td>
+ </tr>
+ <tr>
+ <td class="highlight">תחזוקה חודשית שוטפת מאותה סוכנות</td>
+ <td class="price" style="color: #10b981;">20%</td>
+ <td class="price">80%</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
 
-            <div class="info-box">
-                <strong>דוגמה:</strong><br>
-                🏢 סוכנות חדשה משלמת 40,000 ₪ Setup → 28,000 ₪ אליכם, 12,000 ₪ אלינו (70/30)<br>
-                📅 אותה סוכנות משלמת 2,000 ₪/חודש → 400 ₪ אליכם, 1,600 ₪ אלינו (20/80)
-            </div>
+ <div class="info-box">
+ <strong>דוגמה:</strong><br>
+ סוכנות חדשה משלמת 40,000 ₪ Setup → 28,000 ₪ אליכם, 12,000 ₪ אלינו (70/30)<br>
+ אותה סוכנות משלמת 2,000 ₪/חודש → 400 ₪ אליכם, 1,600 ₪ אלינו (20/80)
+ </div>
 
-            <h3>מה אנחנו אחראים עליו:</h3>
-            <ul>
-                <li>המוצר עצמו + עדכונים ופיתוחים חדשים</li>
-                <li>תמיכה טכנית לסוכנויות המשנה</li>
-                <li>אינטגרציות עם פלטפורמות חדשות</li>
-                <li>Onboarding טכני של סוכנויות חדשות</li>
-            </ul>
+ <h3>מה אנחנו אחראים עליו:</h3>
+ <ul>
+ <li>המוצר עצמו + עדכונים ופיתוחים חדשים</li>
+ <li>תמיכה טכנית לסוכנויות המשנה</li>
+ <li>אינטגרציות עם פלטפורמות חדשות</li>
+ <li>Onboarding טכני של סוכנויות חדשות</li>
+ </ul>
 
-            <h3>מה אתם אחראים עליו:</h3>
-            <ul>
-                <li>Sales - איתור ופנייה לסוכנויות</li>
-                <li>הדגמות ומכירה</li>
-                <li>Onboarding עסקי והכרת המוצר לסוכנות החדשה</li>
-                <li>ליווי Account Management של הסוכנויות</li>
-            </ul>
+ <h3>מה אתם אחראים עליו:</h3>
+ <ul>
+ <li>Sales - איתור ופנייה לסוכנויות</li>
+ <li>הדגמות ומכירה</li>
+ <li>Onboarding עסקי והכרת המוצר לסוכנות החדשה</li>
+ <li>ליווי Account Management של הסוכנויות</li>
+ </ul>
 
-            <h3>מגבלות והגדרות:</h3>
-            <ul>
-                <li>אין מכירה ללא אישור מראש (פורמלי, מהיר)</li>
-                <li>מחיר מינימום מוסכם לכל סוכנות (כדי לא לזול את המוצר)</li>
-                <li>אתם מקבלים זכות בלעדית למכירה בישראל למשך 2 שנים ראשונות</li>
-                <li>התחייבות למינימום מאמץ - לא "תופסים" את השוק בלי למכור</li>
-            </ul>
+ <h3>מגבלות והגדרות:</h3>
+ <ul>
+ <li>אין מכירה ללא אישור מראש (פורמלי, מהיר)</li>
+ <li>מחיר מינימום מוסכם לכל סוכנות (כדי לא לזול את המוצר)</li>
+ <li>אתם מקבלים זכות בלעדית למכירה בישראל למשך 2 שנים ראשונות</li>
+ <li>התחייבות למינימום מאמץ - לא "תופסים" את השוק בלי למכור</li>
+ </ul>
 
-            <div class="info-box" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-right-color: #10b981; color: #065f46;">
-                <strong>💡 למה זה נעשה לכם שווה:</strong> תהפכו מסוכנות שיווק ל<strong>חברה עם מוצר</strong>. הכנסה חוזרת מסוכנויות אחרות + אפשרות ל-Exit עתידי.
-            </div>
-        </div>
+ <div class="info-box" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-right-color: #10b981; color: #065f46;">
+ <strong> למה זה נעשה לכם שווה:</strong> תהפכו מסוכנות שיווק ל<strong>חברה עם מוצר</strong>. הכנסה חוזרת מסוכנויות אחרות + אפשרות ל-Exit עתידי.
+ </div>
+ </div>
 
-        <!-- SUMMARY -->
-        <div class="card">
-            <h2><span class="emoji">📊</span> סיכום השקעה - תמונה מלאה</h2>
+ <!-- SUMMARY -->
+ <div class="card">
+ <h2><span class="emoji"></span> סיכום השקעה - תמונה מלאה</h2>
 
-            <div class="scenarios">
-                <div class="scenario">
-                    <div class="scenario-header">
-                        <h4>תרחיש A: רק שלב 1</h4>
-                        <div class="scenario-total">53,500 ₪</div>
-                    </div>
-                    <div class="table-wrap">
-                        <table>
-                            <tbody>
-                                <tr><td>שלב 0 - Quick Win (פיתוח + תכנון)</td><td class="price">7,500 ₪</td></tr>
-                                <tr><td>שלב 1 - הדשבורד החכם</td><td class="price">35,000 ₪</td></tr>
-                                <tr><td>תחזוקה חודשית (11 חודשים, חודש ראשון חינם)</td><td class="price">11,000 ₪</td></tr>
-                                <tr class="total-row"><td><strong>סה"כ בשנה הראשונה (לפני שותפות)</strong></td><td class="price"><strong>53,500 ₪</strong></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+ <div class="scenarios">
+ <div class="scenario">
+ <div class="scenario-header">
+ <h4>תרחיש A: רק שלב 1</h4>
+ <div class="scenario-total">53,500 ₪</div>
+ </div>
+ <div class="table-wrap">
+ <table>
+ <tbody>
+ <tr><td>שלב 0 - Quick Win (פיתוח + תכנון)</td><td class="price">7,500 ₪</td></tr>
+ <tr><td>שלב 1 - הדשבורד החכם</td><td class="price">35,000 ₪</td></tr>
+ <tr><td>תחזוקה חודשית (11 חודשים, חודש ראשון חינם)</td><td class="price">11,000 ₪</td></tr>
+ <tr class="total-row"><td><strong>סה"כ בשנה הראשונה (לפני שותפות)</strong></td><td class="price"><strong>53,500 ₪</strong></td></tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
 
-                <div class="scenario">
-                    <div class="scenario-header">
-                        <h4>תרחיש B: שלב 1 + שלב 2</h4>
-                        <div class="scenario-total">87,500 ₪</div>
-                    </div>
-                    <div class="table-wrap">
-                        <table>
-                            <tbody>
-                                <tr><td>שלב 0 - Quick Win (פיתוח + תכנון)</td><td class="price">7,500 ₪</td></tr>
-                                <tr><td>שלב 1 - הדשבורד החכם</td><td class="price">35,000 ₪</td></tr>
-                                <tr><td>שלב 2 - יכולות AI מתקדמות</td><td class="price">35,000 ₪</td></tr>
-                                <tr><td>תחזוקה חודשית (10 חודשים)</td><td class="price">10,000 ₪</td></tr>
-                                <tr class="total-row"><td><strong>סה"כ בשנה הראשונה (לפני שותפות)</strong></td><td class="price"><strong>87,500 ₪</strong></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+ <div class="scenario">
+ <div class="scenario-header">
+ <h4>תרחיש B: שלב 1 + שלב 2</h4>
+ <div class="scenario-total">87,500 ₪</div>
+ </div>
+ <div class="table-wrap">
+ <table>
+ <tbody>
+ <tr><td>שלב 0 - Quick Win (פיתוח + תכנון)</td><td class="price">7,500 ₪</td></tr>
+ <tr><td>שלב 1 - הדשבורד החכם</td><td class="price">35,000 ₪</td></tr>
+ <tr><td>שלב 2 - יכולות AI מתקדמות</td><td class="price">35,000 ₪</td></tr>
+ <tr><td>תחזוקה חודשית (10 חודשים)</td><td class="price">10,000 ₪</td></tr>
+ <tr class="total-row"><td><strong>סה"כ בשנה הראשונה (לפני שותפות)</strong></td><td class="price"><strong>87,500 ₪</strong></td></tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
+ </div>
 
-            <h3>Cash Flow חודשי בפועל (תרחיש A)</h3>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>חודש</th>
-                            <th>תשלום</th>
-                            <th>מצטבר</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>חודש 1</td><td class="price">19,500 ₪</td><td>19,500 ₪</td></tr>
-                        <tr><td>חודש 2</td><td class="price">10,000 ₪</td><td>29,500 ₪</td></tr>
-                        <tr><td>חודש 3</td><td class="price">13,000 ₪</td><td>42,500 ₪</td></tr>
-                        <tr><td>חודש 4</td><td class="price">0 ₪ (חודש מתנה)</td><td>42,500 ₪</td></tr>
-                        <tr><td>חודש 5-12</td><td class="price">1,000 ₪ / חודש</td><td>50,500 ₪</td></tr>
-                        <tr><td>חודש 13+</td><td class="price">1,000 ₪ / חודש</td><td>-</td></tr>
-                    </tbody>
-                </table>
-            </div>
+ <h3>Cash Flow חודשי בפועל (תרחיש A)</h3>
+ <div class="table-wrap">
+ <table>
+ <thead>
+ <tr>
+ <th>חודש</th>
+ <th>תשלום</th>
+ <th>מצטבר</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td>חודש 1</td><td class="price">19,500 ₪</td><td>19,500 ₪</td></tr>
+ <tr><td>חודש 2</td><td class="price">10,000 ₪</td><td>29,500 ₪</td></tr>
+ <tr><td>חודש 3</td><td class="price">13,000 ₪</td><td>42,500 ₪</td></tr>
+ <tr><td>חודש 4</td><td class="price">0 ₪ (חודש מתנה)</td><td>42,500 ₪</td></tr>
+ <tr><td>חודש 5-12</td><td class="price">1,000 ₪ / חודש</td><td>50,500 ₪</td></tr>
+ <tr><td>חודש 13+</td><td class="price">1,000 ₪ / חודש</td><td>-</td></tr>
+ </tbody>
+ </table>
+ </div>
 
-            <div class="success-box">
-                <strong>הנה מה שחשוב:</strong> ההוצאה הגדולה פרוסה על 3 חודשים ראשונים, ואחרי זה זה הופך ל-1,000 ₪ בלבד לחודש
-            </div>
-        </div>
+ <div class="success-box">
+ <strong>הנה מה שחשוב:</strong> ההוצאה הגדולה פרוסה על 3 חודשים ראשונים, ואחרי זה זה הופך ל-1,000 ₪ בלבד לחודש
+ </div>
+ </div>
 
 
-        <!-- BONUSES -->
-        <div class="card">
-            <h2><span class="emoji">🎁</span> בונוסים שנכללים במחיר</h2>
-            <div class="bonus-grid">
-                <div class="bonus-item">
-                    <span class="gift">🎓</span>
-                    <span>3 שעות הדרכה חודשיות (3 חודשים)</span>
-                </div>
-                <div class="bonus-item">
-                    <span class="gift">🚀</span>
-                    <span>Onboarding של 3 לקוחות ראשונים</span>
-                </div>
-                <div class="bonus-item">
-                    <span class="gift">🆓</span>
-                    <span>חודש ראשון של תחזוקה חינם</span>
-                </div>
-                <div class="bonus-item">
-                    <span class="gift">📚</span>
-                    <span>תיעוד מלא בעברית - משתמש + ניהול</span>
-                </div>
-                <div class="bonus-item" style="grid-column: span 2;">
-                    <span class="gift">💬</span>
-                    <span>שיחה דו-שבועית קבועה עם מנהל הפרויקט מצידנו</span>
-                </div>
-            </div>
-        </div>
+ <!-- BONUSES -->
+ <div class="card">
+ <h2><span class="emoji"></span> בונוסים שנכללים במחיר</h2>
+ <div class="bonus-grid">
+ <div class="bonus-item">
+ <span class="gift"></span>
+ <span>3 שעות הדרכה חודשיות (3 חודשים)</span>
+ </div>
+ <div class="bonus-item">
+ <span class="gift"></span>
+ <span>Onboarding של 3 לקוחות ראשונים</span>
+ </div>
+ <div class="bonus-item">
+ <span class="gift"></span>
+ <span>חודש ראשון של תחזוקה חינם</span>
+ </div>
+ <div class="bonus-item">
+ <span class="gift"></span>
+ <span>תיעוד מלא בעברית - משתמש + ניהול</span>
+ </div>
+ <div class="bonus-item" style="grid-column: span 2;">
+ <span class="gift"></span>
+ <span>שיחה דו-שבועית קבועה עם מנהל הפרויקט מצידנו</span>
+ </div>
+ </div>
+ </div>
 
-        <!-- TIMELINE -->
-        <div class="card">
-            <h2><span class="emoji">⏱️</span> Timeline מוצע</h2>
-            <div class="timeline">
-                <div class="line"><span class="weeks">שבוע 1-2:</span>    <span class="phase-text">שלב 0 - Quick Win</span></div>
-                <div class="line"><span class="weeks">שבוע 3-10:</span>   <span class="phase-text">שלב 1 - פיתוח הדשבורד החכם</span></div>
-                <div class="line"><span class="weeks">שבוע 11:</span>     <span class="phase-text">השקה ללקוח הראשון שלכם</span></div>
-                <div class="line"><span class="weeks">שבוע 12-16:</span>  <span class="phase-text">חיזוק, שיפורים, onboarding ללקוחות 2-3</span></div>
-                <div class="line"><span class="weeks">שבוע 17+:</span>    <span class="phase-text">שלב 2 (אם מחליטים) + תחזוקה שוטפת</span></div>
-            </div>
-            <div class="info-box" style="margin-top: 20px;">
-                <strong>תאריך התחלה מוצע:</strong> תוך 10 ימי עבודה מחתימה
-            </div>
-        </div>
+ <!-- TIMELINE -->
+ <div class="card">
+ <h2><span class="emoji">⏱</span> Timeline מוצע</h2>
+ <div class="timeline">
+ <div class="line"><span class="weeks">שבוע 1-2:</span> <span class="phase-text">שלב 0 - Quick Win</span></div>
+ <div class="line"><span class="weeks">שבוע 3-10:</span> <span class="phase-text">שלב 1 - פיתוח הדשבורד החכם</span></div>
+ <div class="line"><span class="weeks">שבוע 11:</span> <span class="phase-text">השקה ללקוח הראשון שלכם</span></div>
+ <div class="line"><span class="weeks">שבוע 12-16:</span> <span class="phase-text">חיזוק, שיפורים, onboarding ללקוחות 2-3</span></div>
+ <div class="line"><span class="weeks">שבוע 17+:</span> <span class="phase-text">שלב 2 (אם מחליטים) + תחזוקה שוטפת</span></div>
+ </div>
+ <div class="info-box" style="margin-top: 20px;">
+ <strong>תאריך התחלה מוצע:</strong> תוך 10 ימי עבודה מחתימה
+ </div>
+ </div>
 
-        <!-- WHY NOW -->
-        <div class="card">
-            <h2><span class="emoji">🎤</span> למה זה נכון לכם דווקא עכשיו</h2>
+ <!-- WHY NOW -->
+ <div class="card">
+ <h2><span class="emoji"></span> למה זה נכון לכם דווקא עכשיו</h2>
 
-            <p>ממה שאמרתם בטופס:</p>
-            <div class="quote">
-                "אנחנו לא יכולים לשקף בכל רגע נתון ללקוחות מה מצב השיווק... אנחנו מבזבזים המון זמן בעבודה ידנית... יש לקוחות שמתפספסים כי אנחנו לא יכולים להתחייב על מספרים מדויקים"
-            </div>
+ <p>ממה שאמרתם בטופס:</p>
+ <div class="quote">
+ "אנחנו לא יכולים לשקף בכל רגע נתון ללקוחות מה מצב השיווק... אנחנו מבזבזים המון זמן בעבודה ידנית... יש לקוחות שמתפספסים כי אנחנו לא יכולים להתחייב על מספרים מדויקים"
+ </div>
 
-            <h3>מה ישתנה אחרי שלב 1</h3>
-            <ul>
-                <li>📊 כל לקוח יוכל להיכנס בכל רגע ולראות את מצבו</li>
-                <li>⏱️ חיסכון של 15-20 שעות חודשיות שהיום הולכות על דוחות ידניים</li>
-                <li>💪 תוכלו לבוא ללקוח פוטנציאלי עם הבטחות מבוססות נתונים</li>
-                <li>🎯 מצגת לכל לקוח תהיה מוכנה ב-3 קליקים</li>
-            </ul>
+ <h3>מה ישתנה אחרי שלב 1</h3>
+ <ul>
+ <li> כל לקוח יוכל להיכנס בכל רגע ולראות את מצבו</li>
+ <li>⏱ חיסכון של 15-20 שעות חודשיות שהיום הולכות על דוחות ידניים</li>
+ <li> תוכלו לבוא ללקוח פוטנציאלי עם הבטחות מבוססות נתונים</li>
+ <li> מצגת לכל לקוח תהיה מוכנה ב-3 קליקים</li>
+ </ul>
 
-        </div>
+ </div>
 
-        <!-- CTA -->
-        <div class="cta">
-            <h2>📋 השלבים הבאים</h2>
-            <p>אם ההצעה מעניינת אתכם - הנה הדרך הפשוטה להתחיל:</p>
+ <!-- CTA -->
+ <div class="cta">
+ <h2> השלבים הבאים</h2>
+ <p>אם ההצעה מעניינת אתכם - הנה הדרך הפשוטה להתחיל:</p>
 
-            <div class="steps">
-                <div class="step">
-                    <div class="step-num">1</div>
-                    <h4>פגישת הבהרות</h4>
-                    <p>השבוע, 60 דקות<br>נענה על כל שאלה</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">2</div>
-                    <h4>Quick Win ב-7,500 ₪</h4>
-                    <p>שבועיים - ומקבלים<br>מוצר עובד + תוכנית להמשך</p>
-                </div>
-            </div>
-        </div>
+ <div class="steps">
+ <div class="step">
+ <div class="step-num">1</div>
+ <h4>פגישת הבהרות</h4>
+ <p>השבוע, 60 דקות<br>נענה על כל שאלה</p>
+ </div>
+ <div class="step">
+ <div class="step-num">2</div>
+ <h4>Quick Win ב-7,500 ₪</h4>
+ <p>שבועיים - ומקבלים<br>מוצר עובד + תוכנית להמשך</p>
+ </div>
+ </div>
+ </div>
 
-        <!-- FAQ -->
-        <div class="card">
-            <h2><span class="emoji">❓</span> שאלות נפוצות</h2>
+ <!-- FAQ -->
+ <div class="card">
+ <h2><span class="emoji"></span> שאלות נפוצות</h2>
 
-            <div class="faq-item">
-                <div class="faq-q">מה אם הפיתוח יקח יותר זמן מהצפוי?</div>
-                <div class="faq-a">המחירים קבועים - הסיכון עלינו. אם ניקח יותר זמן, לא תשלמו יותר.</div>
-            </div>
+ <div class="faq-item">
+ <div class="faq-q">מה אם הפיתוח יקח יותר זמן מהצפוי?</div>
+ <div class="faq-a">המחירים קבועים - הסיכון עלינו. אם ניקח יותר זמן, לא תשלמו יותר.</div>
+ </div>
 
-            <div class="faq-item">
-                <div class="faq-q">מה אם נרצה פיצ'ר נוסף באמצע?</div>
-                <div class="faq-a">נעריך אותו בנפרד - שינויים מעבר ל-scope יתומחרו כ-Change Request.</div>
-            </div>
+ <div class="faq-item">
+ <div class="faq-q">מה אם נרצה פיצ'ר נוסף באמצע?</div>
+ <div class="faq-a">נעריך אותו בנפרד - שינויים מעבר ל-scope יתומחרו כ-Change Request.</div>
+ </div>
 
-            <div class="faq-item">
-                <div class="faq-q">מה אם המערכת לא תעבוד טוב?</div>
-                <div class="faq-a">אחרי שלב 1 יש תקופת אחריות של 3 חודשים - אנחנו מתקנים הכל ללא עלות.</div>
-            </div>
+ <div class="faq-item">
+ <div class="faq-q">מה אם המערכת לא תעבוד טוב?</div>
+ <div class="faq-a">אחרי שלב 1 יש תקופת אחריות של 3 חודשים - אנחנו מתקנים הכל ללא עלות.</div>
+ </div>
 
-            <div class="faq-item">
-                <div class="faq-q">מה עם אבטחת המידע של הלקוחות שלנו?</div>
-                <div class="faq-a">תקני אבטחה מלאים - הצפנה, גיבויים, GDPR. נכין מסמך אבטחה מפורט בשלב 0.</div>
-            </div>
+ <div class="faq-item">
+ <div class="faq-q">מה עם אבטחת המידע של הלקוחות שלנו?</div>
+ <div class="faq-a">תקני אבטחה מלאים - הצפנה, גיבויים, GDPR. נכין מסמך אבטחה מפורט בשלב 0.</div>
+ </div>
 
-            <div class="faq-item">
-                <div class="faq-q">מה אם נרצה להפסיק את התחזוקה?</div>
-                <div class="faq-a">חופשי לחלוטין - התראה של 60 יום. הקוד נשאר אצלכם, תוכלו להמשיך לעבוד איתו לבד.</div>
-            </div>
-        </div>
+ <div class="faq-item">
+ <div class="faq-q">מה אם נרצה להפסיק את התחזוקה?</div>
+ <div class="faq-a">חופשי לחלוטין - התראה של 60 יום. הקוד נשאר אצלכם, תוכלו להמשיך לעבוד איתו לבד.</div>
+ </div>
+ </div>
 
-        <!-- FINAL -->
-        <div class="card" style="text-align: center; background: linear-gradient(135deg, #faf5ff, #fdf2f8);">
-            <h2 style="justify-content: center;"><span class="emoji">💌</span> לסיכום</h2>
-            <p style="font-size: 1.1rem; color: #475569; max-width: 600px; margin: 0 auto 20px;">
-                <strong>אנחנו מאמינים בפרויקט הזה</strong>, ולכן בנינו הצעה שמגינה גם עליכם וגם עלינו:
-            </p>
-            <div style="display: inline-block; text-align: right; margin: 20px auto;">
-                <ul style="display: inline-block;">
-                    <li>💰 התחלה קלה (7,500 ₪) עם מוצר שכבר עובד</li>
-                    <li>📈 תשלום פרוס לפי אבני דרך</li>
-                    <li>🎯 מחויבים לתוצאות - שותפות רק כשאתם מצליחים</li>
-                    <li>🔒 הגנה על שני הצדדים</li>
-                </ul>
-            </div>
-            <p style="font-size: 1.2rem; color: #a855f7; font-weight: 700; margin-top: 20px;">
-                זה יהיה כיף לעבוד ביחד ✨
-            </p>
-        </div>
+ <!-- FINAL -->
+ <div class="card" style="text-align: center; background: linear-gradient(135deg, #faf5ff, #fdf2f8);">
+ <h2 style="justify-content: center;"><span class="emoji"></span> לסיכום</h2>
+ <p style="font-size: 1.1rem; color: #475569; max-width: 600px; margin: 0 auto 20px;">
+ <strong>אנחנו מאמינים בפרויקט הזה</strong>, ולכן בנינו הצעה שמגינה גם עליכם וגם עלינו:
+ </p>
+ <div style="display: inline-block; text-align: right; margin: 20px auto;">
+ <ul style="display: inline-block;">
+ <li> התחלה קלה (7,500 ₪) עם מוצר שכבר עובד</li>
+ <li> תשלום פרוס לפי אבני דרך</li>
+ <li> מחויבים לתוצאות - שותפות רק כשאתם מצליחים</li>
+ <li> הגנה על שני הצדדים</li>
+ </ul>
+ </div>
+ <p style="font-size: 1.2rem; color: #a855f7; font-weight: 700; margin-top: 20px;">
+ זה יהיה כיף לעבוד ביחד 
+ </p>
+ </div>
 
-        <div class="footer">
-            <p>הצעה זו תקפה למשך 30 יום מתאריך הצגתה</p>
-            <p style="margin-top: 8px;">לכל שאלה: <a href="mailto:inna@hai.tech">inna@hai.tech</a></p>
-        </div>
+ <div class="footer">
+ <p>הצעה זו תקפה למשך 30 יום מתאריך הצגתה</p>
+ <p style="margin-top: 8px;">לכל שאלה: <a href="mailto:inna@hai.tech">inna@hai.tech</a></p>
+ </div>
 
-    </div>
+ </div>
 </body>
 </html>
