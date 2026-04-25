@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>המוח השיווקי של אניס - מצגת</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Slide backgrounds */
+        .slide-1 { background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #831843 100%); }
+        .slide-2 { background: linear-gradient(135deg, #18181b 0%, #1e293b 100%); }
+        .slide-3 { background: linear-gradient(135deg, #4c1d95 0%, #6b21a8 50%, #be185d 100%); }
+        .slide-4 { background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%); }
+        .slide-5 { background: linear-gradient(135deg, #18181b 0%, #312e81 100%); }
+        .slide-6 { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); }
+        .slide-7 { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); }
+        .slide-8 { background: linear-gradient(135deg, #581c87 0%, #7e22ce 100%); }
+        .slide-9 { background: linear-gradient(135deg, #831843 0%, #be185d 100%); }
+        .slide-10 { background: linear-gradient(135deg, #1e293b 0%, #4c1d95 50%, #831843 100%); }
+        .slide-11 { background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%); }
+
+        /* Decorative gradient overlay */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .content {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Pain quote */
+        .quote-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 40px;
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            margin: 32px 0;
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            right: 30px;
+            font-size: 8rem;
+            font-family: Georgia, serif;
+            color: rgba(255, 255, 255, 0.2);
+            line-height: 1;
+        }
+
+        .attribution {
+            margin-top: 20px;
+            font-size: 1rem;
+            font-style: normal;
+            opacity: 0.7;
+        }
+
+        /* 2x2 Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: right;
+        }
+
+        .card-glass h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fbbf24;
+        }
+
+        .card-glass p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .card-glass .number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fbbf24, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        /* Architecture diagram */
+        .arch-diagram {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 32px;
+        }
+
+        .arch-top {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            padding: 16px 32px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+        }
+
+        .arch-arrow {
+            font-size: 2rem;
+            opacity: 0.5;
+            margin: 16px 0;
+        }
+
+        .arch-clients {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .arch-client {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 0.95rem;
+        }
+
+        /* Features list */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+            text-align: right;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 18px 24px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 800;
+            color: #1e1b4b;
+        }
+
+        .feature-text {
+            font-size: 1.1rem;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* Phases */
+        .phase-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 24px 0;
+            text-align: right;
+        }
+
+        .phase-num {
+            display: inline-block;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1e1b4b;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .phase-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .phase-time {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        .phase-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .phase-feature {
+            font-size: 1rem;
+            opacity: 0.95;
+            padding-right: 18px;
+            position: relative;
+        }
+
+        .phase-feature::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: #fbbf24;
+            border-radius: 50%;
+        }
+
+        /* Partnership stats */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fbbf24 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+
+        /* Reseller flow */
+        .flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+            margin-top: 32px;
+        }
+
+        .flow-step {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            opacity: 0.5;
+        }
+
+        /* CTA */
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .cta-step {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 32px 24px;
+        }
+
+        .cta-num {
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: #6366f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-weight: 900;
+            font-size: 1.4rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            padding: 12px 20px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+        }
+
+        .nav button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .nav .counter {
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 500;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #ec4899);
+            z-index: 200;
+            transition: width 0.5s ease;
+        }
+
+        /* Hint */
+        .hint {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+            z-index: 100;
+        }
+
+        @media (max-width: 1100px) {
+            .slide { padding: 40px 30px; }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.3rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr; }
+            .phase-features { grid-template-columns: 1fr; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .flow { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+            .cta-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="hint">חיצים ←→ או לחיצה למעבר</div>
+
+    <div class="slide-container">
+
+        <!-- SLIDE 1: TITLE -->
+        <div class="slide slide-1 active">
+            <div class="content">
+                <div class="badge">הצעת שיתוף פעולה אסטרטגית</div>
+                <h1>המוח השיווקי <br><span class="gradient-text">של אניס</span></h1>
+                <p class="subtitle">פלטפורמת AI שתהפוך את אניס מסוכנת שירות לסוכנת מוצר - <br>שיווק מבוסס דאטה, לא תחושות</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: THE PAIN -->
+        <div class="slide slide-2">
+            <div class="content">
+                <div class="badge">איפה אנחנו היום</div>
+                <h2>הכאב <span class="gradient-text">האמיתי</span></h2>
+
+                <div class="quote-box">
+                    "אנחנו לא יכולים לשקף בכל רגע נתון ללקוחות מה מצב השיווק... אנחנו מבזבזים המון זמן בעבודה ידנית... יש לקוחות שמתפספסים כי אנחנו לא יכולים להתחייב על מספרים מדויקים"
+                    <div class="attribution">— ליטל, מנכ"לית אניס</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: VISION -->
+        <div class="slide slide-3">
+            <div class="content">
+                <div class="badge">החזון</div>
+                <h2>מ"דאטה"<br>ל<span class="gradient-text">"החלטות"</span></h2>
+                <p class="subtitle" style="margin-top: 32px;">לא עוד דוחות חודשיים מאוחרים. לא עוד תחושות בטן. <br>מערכת AI שמנתחת, ממליצה ומבצעת - בזמן אמת.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: 4 DIFFERENTIATORS -->
+        <div class="slide slide-4">
+            <div class="content">
+                <div class="badge">4 שכבות בידול</div>
+                <h2>מה שונה <span class="gradient-text">אצלנו</span></h2>
+
+                <div class="grid-2">
+                    <div class="card-glass">
+                        <div class="number">01</div>
+                        <h4>מדאטה להחלטות</h4>
+                        <p>"כבה את הקמפיין הזה" - לא "יש בעיה", אלא פעולה ברורה</p>
+                    </div>
+                    <div class="card-glass">
+                        <div class="number">02</div>
+                        <h4>מתובנות לכסף</h4>
+                        <p>"אתה מפסיד 4,200 ₪ בחודש בגלל X" - מספר, לא תחושה</p>
+                    </div>
+                    <div class="card-glass">
+                        <div class="number">03</div>
+                        <h4>מכלי ליועץ</h4>
+                        <p>AI שחושב כמו Head of Marketing, לא דשבורד פסיבי</p>
+                    </div>
+                    <div class="card-glass">
+                        <div class="number">04</div>
+                        <h4>מניתוח לפעולה</h4>
+                        <p>בעתיד: כפתור "יישם המלצה" - לא רק לקרוא</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: ARCHITECTURE -->
+        <div class="slide slide-5">
+            <div class="content">
+                <div class="badge">איך זה בנוי</div>
+                <h2>פלטפורמה <span class="gradient-text">Multi-tenant</span></h2>
+                <p class="subtitle">סביבה נפרדת לכל לקוח של אניס. אתם רואים הכל, הלקוח רואה רק את עצמו.</p>
+
+                <div class="arch-diagram">
+                    <div class="arch-top">אניס - Admin Dashboard</div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-clients">
+                        <div class="arch-client">
+                            <strong>לקוח A</strong><br>
+                            <small>מסעדנות / דאטה משלו</small>
+                        </div>
+                        <div class="arch-client">
+                            <strong>לקוח B</strong><br>
+                            <small>פוליטיקה / דאטה משלו</small>
+                        </div>
+                        <div class="arch-client">
+                            <strong>לקוח C</strong><br>
+                            <small>כושר / דאטה משלו</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: PHASE 0 -->
+        <div class="slide slide-6">
+            <div class="content">
+                <div class="badge">איך מתחילים</div>
+                <h2>שלב 0: <span class="gradient-text">Quick Win</span></h2>
+                <p class="subtitle">תוך שבועיים - מוצר חי, לא מצגות</p>
+
+                <div class="phase-card">
+                    <div class="phase-time">2 שבועות</div>
+                    <div class="phase-features">
+                        <div class="phase-feature">חיבור Google Ads או Meta של לקוח אחד</div>
+                        <div class="phase-feature">דשבורד עם 5-6 KPIs עיקריים</div>
+                        <div class="phase-feature">נתונים חיים, מתעדכנים אוטומטית</div>
+                        <div class="phase-feature">תוכנית פיתוח מפורטת לשלב 1</div>
+                        <div class="phase-feature">2 פגישות עומק לתכנון</div>
+                        <div class="phase-feature">החלטה משותפת: ממשיכים?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: PHASE 1 -->
+        <div class="slide slide-7">
+            <div class="content">
+                <div class="badge">שלב 1</div>
+                <h2>הדשבורד <span class="gradient-text">החכם</span></h2>
+                <p class="subtitle">החלפה מלאה של הגוגל שיטס - 6-8 שבועות</p>
+
+                <div class="phase-card">
+                    <div class="phase-features">
+                        <div class="phase-feature">Google Ads, Meta Ads, GA4</div>
+                        <div class="phase-feature">מרכזיות + הקלטות שיחה</div>
+                        <div class="phase-feature">WhatsApp Business</div>
+                        <div class="phase-feature">דשבורד ביצועים בזמן אמת</div>
+                        <div class="phase-feature">ניתוח שיחות AI אוטומטי</div>
+                        <div class="phase-feature">מחקר מתחרים מבוסס AI</div>
+                        <div class="phase-feature">דוחות אוטומטיים</div>
+                        <div class="phase-feature">Client Portal לכל לקוח</div>
+                        <div class="phase-feature">התראות חכמות</div>
+                        <div class="phase-feature">Onboarding 3 לקוחות ראשונים</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: PHASE 2 -->
+        <div class="slide slide-8">
+            <div class="content">
+                <div class="badge">שלב 2 (אופציונלי)</div>
+                <h2>המוח - <span class="gradient-text">AI מתקדם</span></h2>
+                <p class="subtitle">מהדשבורד ליועץ AI אמיתי - 6-8 שבועות</p>
+
+                <div class="phase-card">
+                    <div class="phase-features">
+                        <div class="phase-feature">מנוע המלצות AI עם ערך כספי</div>
+                        <div class="phase-feature">CRM מלא לכל לקוח של אניס</div>
+                        <div class="phase-feature">ניתוח מיתוג ונכסים דיגיטליים</div>
+                        <div class="phase-feature">3 סוכני AI: קמפיינים / CRO / חיזוי</div>
+                        <div class="phase-feature">"כבה X - חוסך 2,300 ₪"</div>
+                        <div class="phase-feature">Onboarding 5 לקוחות נוספים</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: PARTNERSHIP -->
+        <div class="slide slide-9">
+            <div class="content">
+                <div class="badge">המודל העסקי</div>
+                <h2>שותפות <span class="gradient-text">אמיתית</span></h2>
+                <p class="subtitle">10% מהתשלום של כל לקוח שמשתמש במערכת. <br>ללא תקרה. ללא תאריך פקיעה. אנחנו גדלים יחד.</p>
+
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-number">10%</div>
+                        <div class="stat-label">משלמים אנחנו<br>לאניס יישאר 90%</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">ללא תקרה<br>גדלים יחד עם אניס</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">סיכון לאניס<br>10% מהמכירות, לא מרווחים</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: RESELLER -->
+        <div class="slide slide-10">
+            <div class="content">
+                <div class="badge">הזדמנות עתידית</div>
+                <h2>אניס כ<span class="gradient-text">חברת מוצר</span></h2>
+                <p class="subtitle">מכרו את המערכת לסוכנויות שיווק אחרות. <br>הכנסה חוזרת, exit עתידי, מודל עסקי חדש.</p>
+
+                <div class="grid-2">
+                    <div class="card-glass">
+                        <div class="number">70/30</div>
+                        <h4>מכירה לסוכנות</h4>
+                        <p>אניס מקבלת 70% מכל deal חדש. אנחנו 30% - תמורת תמיכה, אינטגרציה ותחזוקה.</p>
+                    </div>
+                    <div class="card-glass">
+                        <div class="number">בלעדיות</div>
+                        <h4>בישראל - לכם</h4>
+                        <p>זכות בלעדית למכירה בישראל, תלוית עמידה ביעדי ביצוע. שותפות אמיתית.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: NEXT STEPS -->
+        <div class="slide slide-11">
+            <div class="content">
+                <h1>בואו <span style="color: #fbbf24;">נצא לדרך</span></h1>
+                <p class="subtitle">כל הפרטים והמספרים בהצעה הכתובה - <br>נעבור עליהם יחד אחרי הפגישה</p>
+
+                <div class="cta-grid">
+                    <div class="cta-step">
+                        <div class="cta-num">1</div>
+                        <h3 style="color: white;">פגישת הבהרות</h3>
+                        <p style="opacity: 0.9;">נענה על כל שאלה<br>ניישר ציפיות</p>
+                    </div>
+                    <div class="cta-step">
+                        <div class="cta-num">2</div>
+                        <h3 style="color: white;">חתימה על שלב 0</h3>
+                        <p style="opacity: 0.9;">סכום סמלי<br>שבועיים, מוצר חי</p>
+                    </div>
+                    <div class="cta-step">
+                        <div class="cta-num">3</div>
+                        <h3 style="color: white;">בונים יחד</h3>
+                        <p style="opacity: 0.9;">המוח השיווקי<br>של אניס</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="nav">
+        <button onclick="prevSlide()">‹</button>
+        <span class="counter" id="counter">1 / 11</span>
+        <button onclick="nextSlide()">›</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const counter = document.getElementById('counter');
+        const progressBar = document.getElementById('progressBar');
+
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
+            counter.textContent = `${index + 1} / ${totalSlides}`;
+            progressBar.style.width = `${((index + 1) / totalSlides) * 100}%`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') nextSlide(); // RTL
+            if (e.key === 'ArrowRight' || e.key === 'ArrowUp') prevSlide(); // RTL
+            if (e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'Home') { currentSlide = 0; showSlide(0); }
+            if (e.key === 'End') { currentSlide = totalSlides - 1; showSlide(currentSlide); }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') return;
+            const x = e.clientX;
+            const half = window.innerWidth / 2;
+            if (x < half) nextSlide(); // RTL: left side = next
+            else prevSlide();
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>
